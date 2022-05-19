@@ -6,8 +6,6 @@ services:
         container_name: synteny-explorer
         networks:
           - infovisnet
-        ports:
-            - 80:80
         volumes:
             - ./public:/usr/share/nginx/html
 
