@@ -15,6 +15,8 @@
 
 <body onmousedown="return false" onselectstart="return false">
     <div>
+        <div id="mask">
+        <div id="intro_slides"></div>
         <nav class="main-nav navbar-fixed-top" role="navigation">
             <h2 class="nav-brand"><a href="#">Synteny Explorer</h2></a>
             <ul id="main-menu" class="sm sm-clean">
@@ -42,7 +44,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#"> Help</a></li>
+                    <li><a href="#" id="show_intro"> Help</a></li>
                     <li id="Reset"><a href="#"> Undo</a></li>
                 </ul>
             </nav>
@@ -94,6 +96,7 @@
 
         <!-- SmartMenus jQuery init -->
         <script type="text/javascript" src="js/smartMenuInitial.js"></script>
+    </div>
     </div>
 </body>
 

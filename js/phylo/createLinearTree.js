@@ -3,6 +3,8 @@ function creatLinearTree(life, info, baseSvg) {
     var showTime = 0;
     var showName = 1;
     $("#show_name").css("color", "#d23600");
+    $("#linear").css("color", "#d23600");
+    $("#radial").css("color", "#555555");
     
 
     $("#zoomValue").val('100');
@@ -237,7 +239,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 $("#speTwo").html("<div class=\"boxTitle\"><a href=\"#\" class=\"closeButton\" id=\"reselectSpeTwo\" style=\"transform:translate(-18px,3px);\"></a><img src=png/" + 
                                     d.data.name + "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" +
                                     sName[d.data.name] + "</p><p class=\"textArea\">" + 
-                                    [d.data.name] + "</p><div>");
+                                    wiki[d.data.name] + "</p><div>");
                                 var miniLife = buildMiniTree(firstNode, secondNode);
                                 localStorage.setItem("miniLife", miniLife);
                                 createMiniTree(miniLife, info);  
@@ -331,7 +333,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 $("#speOne").html("<div class=\"boxTitle\"><a href=\"#\" class=\"closeButton\" id=\"reselectSpeTwo\" style=\"transform:translate(-18px,3px);\"></a><img src=png/" + 
                                     d.data.name + "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" +
                                     sName[d.data.name] + "</p><p class=\"textArea\">" + 
-                                    [d.data.name] + "</p><div>");
+                                    wiki[d.data.name] + "</p><div>");
                                 var miniLife = buildMiniTree(firstNode, secondNode);
                                 localStorage.setItem("miniLife", miniLife);
                                 createMiniTree(miniLife, info);  

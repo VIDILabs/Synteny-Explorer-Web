@@ -71,6 +71,14 @@ d3.queue()
         addMiniMap(life, info)
     });
 
+    $("#show_intro").click(function() {
+        //console.log("here")
+        $("#mask").css("-webkit-mask-image", "linear-gradient(white, transparent)");
+        d3.selectAll("#intro_slides")
+            .append("g")
+            .id("slide_1")
+    });
+
     var chart = $(".canvas"),
     rect = document.getElementById("canvas").getBoundingClientRect(),
     aspect = rect.width/rect.height;

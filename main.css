@@ -10,6 +10,12 @@
     background-position: center; 
      overflow: hidden;
  }
+ #mask {
+    max-width: auto;
+    height: auto;
+    overflow-y: scroll;
+  }
+
  p{
     font-family: 'Raleway', sans-serif;
  }

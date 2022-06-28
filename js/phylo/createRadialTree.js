@@ -2,6 +2,8 @@ function creatRadialTree(life, info, baseSvg) {
     var showTime = 0;
     var showName = 1;
     $("#show_name").css("color", "#d23600");
+    $("#radial").css("color", "#d23600");
+    $("#linear").css("color", "#555555");
     $("#zoomValue").val('100');
     outerRadius = w / 2.8, innerRadius = outerRadius - 170;
 
