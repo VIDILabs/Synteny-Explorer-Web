@@ -15,8 +15,15 @@
 
 <body onmousedown="return false" onselectstart="return false">
     <div>
-        <div id="mask">
-        <div id="intro_slides"></div>
+        <div id="intro_slides" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content container">
+                <div class="row" id="modal-content-title"><span class="skip-button">&times;</span></div>
+                <div class="row" id="modal-content-body"></div>
+                <div class="row" id="modal-content-buttons"><span class="next-button">Next &raquo;</span></div>
+                
+            </div>
+        </div>
         <nav class="main-nav navbar-fixed-top" role="navigation">
             <h2 class="nav-brand"><a href="#">Synteny Explorer</h2></a>
             <ul id="main-menu" class="sm sm-clean">
@@ -45,7 +52,6 @@
                         </ul>
                     </li>
                     <li><a href="#" id="show_intro"> Help</a></li>
-                    <li id="Reset"><a href="#"> Undo</a></li>
                 </ul>
             </nav>
             <div class="map" id="tree"></div>
@@ -64,7 +70,7 @@
              
          </div>
          <div class="SelectBox2" id="miniTree">
-            <button type="button" class="button" id="genome">genome view</button>
+            <button type="button" class="button" id="genome">Go to genome view</button>
         </div>
         <div class="bottomSelectBox" id="speTwo">
             <div class="innerBox">
@@ -87,6 +93,7 @@
         <script src="js/phylo/createLinearContextTree.js"></script>
         <script src="js/phylo/createRadialContextTree.js"></script>
         <script src="js/phylo/panAndZoom.js"></script>
+        <script src="js/phylo/createIntroSlides.js"></script>
         
         <!-- jQuery -->
         <script type="text/javascript" src="smartmenus/libs/jquery/jquery.js"></script>
@@ -96,7 +103,7 @@
 
         <!-- SmartMenus jQuery init -->
         <script type="text/javascript" src="js/smartMenuInitial.js"></script>
-    </div>
+
     </div>
 </body>
 

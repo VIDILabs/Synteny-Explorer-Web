@@ -13,9 +13,24 @@
 </head>
 
 <body>
+    <div>
+    <div id="intro_slides" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div id="modal-content-title"></div>
+            <div id="modal-content-body"></div>
+            <div id="modal-content-buttons"></div>
+            <span class="skip-button">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
     <nav class="main-nav navbar-fixed-top" role="navigation">
-        <h2 class="nav-brand"><a href="/#">Synteny Explorer</h2></a>
         <ul id="main-menu" class="sm sm-clean">
+            <li><a id="brand-title" href="#"> Synteny Explorer</a>
+                <ul>
+                    <a  id="back-to-phylo" href="/#">Back to Phylo View</a>
+                </ul>
+            </li>
             <li><a href="#"> Mode</a>
                 <ul>
                     <li><a  id="morphthenslide" href="#">Morphthenslide</a>
@@ -28,7 +43,7 @@
                     <li><a class="mode" id="circos" href="#">Circos</a></li>
                 </ul>
             </li>
-            <li><a href="#"> Help</a></li>
+            <li><a href="#" id="show_intro"> Help</a></li>
             <li id="reset"><a href="#"> Reset</a></li>
         </ul>
     </nav>
@@ -44,7 +59,7 @@
             <p id=""> Click Icons to Select Species.</p>
         </div>
     </div>
-
+</div>
     <div>
         <script src="js/jquery.js"></script>
         <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>

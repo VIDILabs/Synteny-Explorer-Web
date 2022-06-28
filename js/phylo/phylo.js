@@ -16,7 +16,7 @@ $(".button").click(function(){
 });
 
 $(".closeButton").on("click",function(){
-    console.log("here2");
+    //console.log("here2");
 })
 
 
@@ -58,7 +58,6 @@ d3.queue()
     $("#radial").click(function() {
         d3.selectAll('.panCanvas g').remove();
         d3.selectAll('.miniCanvas g').remove();
-
         canvas.addRadialTree();
         display = "radial";
         addMiniMap(life, info)
@@ -73,11 +72,16 @@ d3.queue()
 
     $("#show_intro").click(function() {
         //console.log("here")
-        $("#mask").css("-webkit-mask-image", "linear-gradient(white, transparent)");
-        d3.selectAll("#intro_slides")
+        //$("#mask").css("-webkit-mask-image", "linear-gradient(white, transparent)");
+        $("#intro_slides").css("display", "block");
+        /*d3.selectAll("#intro_slides")
             .append("g")
-            .id("slide_1")
+            .id("slide_1")*/
     });
+
+    $(".skip-button").click(function() {
+        $("#intro_slides").css("display", "none");
+    })
 
     var chart = $(".canvas"),
     rect = document.getElementById("canvas").getBoundingClientRect(),

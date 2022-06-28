@@ -10,11 +10,88 @@
     background-position: center; 
      overflow: hidden;
  }
- #mask {
-    max-width: auto;
-    height: auto;
-    overflow-y: scroll;
+ #brand-title {
+     font-size: x-large;
+ }
+
+  .modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 10%; /* hard code*/
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 0;
+    border-radius: 25px;
+    width: 60%;
+    height: 80%;
+  }
+  #modal-content-title {
+    margin:0;
+    border-radius: 25px 25px 0 0;
+    display:block;
+    border: 2px solid black;
+    width: 100%; /* Full width */
+    height: 15%; /* Full height */
+    background-color: #a29c9c; /* Fallback color */
+  }
+  #modal-content-body {
+    margin:0;
+    display:block;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    width: 100%; /* Full width */
+    height: 70%; /* Full height */
+    background-color: #e5d6c4; /* Fallback color */
+  }
+  #modal-content-buttons {
+    margin:0;
+    border-radius:  0 0 25px 25px;
+    border: 2px solid black;
+    display:block;
+    width: 100%; /* Full width */
+    height: 15%; /* Full height */
+    background-color: #a29c9c; /* Fallback color */
+  }
+
+  .skip-button {
+    margin-top: -1%;
+    margin-right: 3%;
+    color: #af5147;
+    float: right;
+    font-size: 6rem;
+    font-weight: bold;
+  }
+  .skip-button:hover,
+  .skip-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .next-button {
+      font-size:2.5rem;
+      float: right;
+      margin: 2% 3%;
+    background-color: #111c3cbb;
+    color: white;
+    cursor: pointer;
+    padding: 0 2%;
+    border-radius: 10px;
+  }
+
+
+  
 
  p{
     font-family: 'Raleway', sans-serif;
@@ -172,6 +249,7 @@
      overflow: hidden;
  }
  .textArea{
+     margin-top: 16px;
      height: 60%;
      font-size:0.75vw;
      line-height: 20px;

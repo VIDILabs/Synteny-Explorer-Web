@@ -6,7 +6,6 @@ $("#reset").click(function(){
 });
 
 
-
 //get filename from previous page.
 var url = new URL(window.location.href),
 p = getParameterByName("p"),
@@ -68,9 +67,11 @@ height = 1050 - margin.top - margin.bottom;
 var svg = d3.select("#chromosomes")
             .append("svg")
             .style("cursor","move")
-            .attr("width", 1800 + margin.left + margin.right)
+            //.attr("width", 1800 + margin.left + margin.right)
+            .attr("width", '84%')
             .attr("id", "chrSvg")
-            .attr("height", 1400 + margin.top + margin.bottom)
+            //.attr("height", 1400 + margin.top + margin.bottom)
+            .attr("height", '100%')
             .attr("preserveAspectRatio", "xMinYMin meet")
             .attr("viewBox", "0 0 1800 1550")
             .call(d3.zoom().scaleExtent([1, 2.5]).on("zoom", function () {

@@ -58,7 +58,7 @@ function creatLinearTree(life, info, baseSvg) {
         showTime = 0;
     });
 
-    var chart = baseSvg.append("g").attr("transform", "translate(50, 20)");
+    var chart = baseSvg.append("g").attr("transform", "translate(50, 20)")
     tree(root);
 
     function scaleBranchLengths(nodes, w) {
