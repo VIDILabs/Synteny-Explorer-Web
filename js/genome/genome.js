@@ -1,8 +1,10 @@
 
 
 $("#recenter").click(function(){
-    // reload whole page to reset visualizations (not efficient)
-    window.location.reload();
+    // recenter the zoomed svg
+    svg
+    .call(zoom_function.transform, d3.zoomIdentity)
+    .attr("transform", "translate(" + margin.left + "," + (-130) + ")");;
 });
 
 
@@ -64,6 +66,8 @@ var margin = {
 width = 550 - margin.left - margin.right,
 height = 1050 - margin.top - margin.bottom;
 
+var zoom_function = d3.zoom().scaleExtent([1, 2.5]).on("zoom", function () { svg.attr("transform", d3.event.transform); })
+
 var svg = d3.select("#chromosomes")
             .append("svg")
             .style("cursor","move")
@@ -74,15 +78,13 @@ var svg = d3.select("#chromosomes")
             .attr("height", '100%')
             .attr("preserveAspectRatio", "xMinYMin meet")
             .attr("viewBox", "0 0 1800 1550")
-            .call(d3.zoom().scaleExtent([1, 2.5]).on("zoom", function () {
-                svg.attr("transform", d3.event.transform);
-            }))// enable zoom and pan with d3
-            .append("g")
-            .attr("id", "tree")
-            .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
+            .call(zoom_function)// enable zoom and pan with d3
+                .append("g")
+                .attr("id", "tree")
+                .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
 
 
-//make svg responsive ????
+//make svg responsive
 var chart = $("#chrSvg"),
 originalWidth = chart.width(),
 aspect = originalWidth / $(window).width();
@@ -973,7 +975,8 @@ function circos(data, data2, childSpe, parentSpe) {
     var g = d3.select("#chrSvg").append("g")
             .attr("transform", "translate(" + x + "," + y + ")")
             .attr("class", parentSpe + "_" + childSpe + "_circos circos")
-            .attr('pointer-events', 'all');
+            .attr('pointer-events', 'all')
+            
 
     var line = g.append("line")       
                 .style("stroke", "white")  
@@ -1043,7 +1046,7 @@ function circos(data, data2, childSpe, parentSpe) {
             }   
         })
         .style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : ""; })
-        .text(function(d) { return chr[d.index].split("_")[1]; });
+        .text(function(d) { return chr[d.index].split("_")[1]; })
 
     g.append("g").attr("class", "ribbons")
         .selectAll("path")

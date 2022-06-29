@@ -155,8 +155,22 @@ function assignPageText(pageNum) {
     }
 }
 
-var queue = d3.queue();
+var loadfirst = (function() {
+    var executed = false;
+    return function() {
+        if (!executed) {
+            executed = true;
+            // do something
+            console.log("true?")
+            assignPageText(0);
+        }
+    };
+})();
+
+loadfirst();
+
+/*var queue = d3.queue();
 queue.awaitAll(function() {
     //show instruction slides when first load
     assignPageText(0);
-});
+});*/

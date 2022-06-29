@@ -587,14 +587,26 @@ function creatLinearTree(life, info, baseSvg) {
         var rootDist = root.descendants().map(function(n) {
             return n.data.length;
         });
+        rootDist = rootDist.filter(element => {
+            return element !== undefined;
+        });
         rootDists = d3.max(rootDist);
+        
         d3.select('.xaxis').remove();
+
+        console.log(rootDist)
+        console.log(rootDists)
+        console.log(w)
+        console.log("0")
         
         timeLineScale = d3.scaleLinear()
         .domain([rootDists, 0])
-        .rangeRound([0, w * scale2]).nice();
+        .rangeRound([0, w * scale2+50]);
 
         xAxis = d3.axisBottom(timeLineScale);
+
+        let tickLabels = ['300 million years ago', '250 million years ago', '200 million years ago', '150 million years ago','100 million years ago', '50 million years ago','Present'];
+        
 
         d3.select(".timeLine").append("g")
         .attr("class", "xaxis")
@@ -605,7 +617,7 @@ function creatLinearTree(life, info, baseSvg) {
                 return "translate(35," + 20 + ")";
             }
         })
-        .call(xAxis.ticks(5))
+        .call(xAxis.ticks(8).tickFormat((d,i) => tickLabels[i]))//.tickValues([0,30,60,90,120,180,240,300]))//
         .selectAll("text")
         .style("font-size", "15px");
     }
