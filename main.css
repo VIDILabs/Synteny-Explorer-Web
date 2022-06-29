@@ -119,6 +119,10 @@
   #genome_intro_slides {
       display: none;
   }
+
+  #phylo_intro_slides {
+    display: none;
+}
   
 
  p{

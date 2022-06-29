@@ -617,7 +617,7 @@ function creatLinearTree(life, info, baseSvg) {
                 return "translate(35," + 20 + ")";
             }
         })
-        .call(xAxis.ticks(8).tickFormat((d,i) => tickLabels[i]))//.tickValues([0,30,60,90,120,180,240,300]))//
+        .call(xAxis.ticks(8).tickFormat((d,i) => tickLabels[i]))
         .selectAll("text")
         .style("font-size", "15px");
     }

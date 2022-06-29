@@ -7,6 +7,11 @@ $("#recenter").click(function(){
     .attr("transform", "translate(" + margin.left + "," + (-130) + ")");;
 });
 
+$("#back-to-phylo").click(function(){
+    // window will load in the same tag
+    window.location.replace("phylo.html");
+});
+
 
 //get filename from previous page.
 var url = new URL(window.location.href),
@@ -80,7 +85,8 @@ var svg = d3.select("#chromosomes")
             .attr("viewBox", "0 0 1800 1550")
             .call(zoom_function)// enable zoom and pan with d3
                 .append("g")
-                .attr("id", "tree")
+                .attr("id", 'tree')
+                .attr("class", "panSelect")
                 .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
 
 
@@ -402,7 +408,6 @@ queue.awaitAll(function(error, csvDataSets) {
                     });
     
     function changeCursorStyle() {
-        console.log("here418");
         d3.select(this).style("cursor","zoom-in");
     }
 
@@ -889,8 +894,11 @@ function appendRow(num, temparray, data, layer, spe) {
 }
 
 function circos(data, data2, childSpe, parentSpe) {
-    d3.select("#tree")
-        .attr("transform", "translate(" + (margin.left) + "," + (-50) + ")scale(1.2)");
+    //d3.select("#tree")
+        //.attr("transform", "translate(" + (margin.left) + "," + (-50) + ")scale(1.2)");
+    //d3.select(".link_big .node").attr("transform", "translate(" + (margin.left) + "," + (-50) + ")scale(1.2)");
+
+    //console.log("2")
 
     var groupCounts = {};
     var translocations = [];
@@ -923,7 +931,9 @@ function circos(data, data2, childSpe, parentSpe) {
     else{
         y = y2 + (y1 - y2)/2.5;
     }
-    var x = x1 + (x2 - x1)/1.8;
+    var x = x1 + (x2 - x1)/5; // 1,8
+
+    console.log(x)
 
     data2.forEach(function(d, i) {
         if(uniqueCounts[d.chr + d.name] === undefined){
@@ -972,9 +982,10 @@ function circos(data, data2, childSpe, parentSpe) {
                             .groups(groups)
                             .edges(translocations);
 
-    var g = d3.select("#chrSvg").append("g")
+    var g = d3.select("#tree").append("g")
             .attr("transform", "translate(" + x + "," + y + ")")
-            .attr("class", parentSpe + "_" + childSpe + "_circos circos")
+            .attr('class', `${parentSpe}_${childSpe}_circos circos panSelect`)
+            //.attr("class", parentSpe + "_" + childSpe + "_circos circos")
             .attr('pointer-events', 'all')
             
 
@@ -1023,7 +1034,8 @@ function circos(data, data2, childSpe, parentSpe) {
         })
         .attr("class",function(d){return chr[d.index];})
         .attr("d", d3.arc().innerRadius(innerRadius).outerRadius(outerRadius))
-        .on("click",fade(0.5));
+        .on("click",fade(0.5))
+        .attr("cursor", "pointer");
     
     group.append("text")
         .filter(function(d) { return unique.indexOf(d.index) != -1; })

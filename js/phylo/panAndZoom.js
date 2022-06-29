@@ -44,10 +44,14 @@ d3.demo.canvas = function(life, info) {
                 Math.max(Math.min(translation[0], rbound), lbound),
                 Math.max(Math.min(translation[1], bbound), tbound)
                 ];
+                console.log("translation")
+                console.log(translation)
+                
             }
 
             d3.select(".panCanvas, .panCanvas .bg")
             .attr("transform", "translate(" + translation + ")" + " scale(" + scale + ")");
+            
 
             minimap.scale(scale).render();
         }; // startoff zoomed in a bit to show pan/zoom rectangle
@@ -103,10 +107,15 @@ d3.demo.canvas = function(life, info) {
         .attr("height", height)
         .attr("transform", "translate(0,0)");
 
+
         panCanvas.append("rect")
         .attr("class", "background")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        
+        //panCanvas.call(zoom);
+
+        console.log("update")
 
         miniBaseSvg = d3.select("#contextTree").append("svg")
         .attr("id", "miniBaseSvg");

@@ -4,7 +4,6 @@ var body_text;
 var body_image;
 $("#show_intro").click(function() {
     page = 0;
-    //$("#mask").css("-webkit-mask-image", "linear-gradient(white, transparent)");
     $(".modal").css("display", "flex");
     assignPageText(0);
     
