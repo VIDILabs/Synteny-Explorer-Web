@@ -15,10 +15,9 @@
  }
 
   .modal {
-    display: block; /* Hidden by default */
+    display: flex; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 10%; /* hard code*/
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -27,6 +26,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
+
   .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -34,44 +34,51 @@
     border: 0;
     border-radius: 25px;
     width: 60%;
-    height: 80%;
+    height:70%;
   }
+
   #modal-content-title {
-    margin:0;
+    position: relative;
+    margin: 0;
+    padding: 0 5%;
     border-radius: 25px 25px 0 0;
-    display:block;
+    display:flex;
     border: 2px solid black;
     width: 100%; /* Full width */
     height: 15%; /* Full height */
     background-color: #a29c9c; /* Fallback color */
   }
+
   #modal-content-body {
+    position: relative;
+    padding: 2% 5%;
     margin:0;
-    display:block;
+    display:flex;
     border-left: 2px solid black;
     border-right: 2px solid black;
     width: 100%; /* Full width */
     height: 70%; /* Full height */
     background-color: #e5d6c4; /* Fallback color */
   }
+
   #modal-content-buttons {
+    position: relative;
     margin:0;
+    padding:2%;
     border-radius:  0 0 25px 25px;
     border: 2px solid black;
-    display:block;
+    display:flex;
     width: 100%; /* Full width */
     height: 15%; /* Full height */
     background-color: #a29c9c; /* Fallback color */
   }
 
   .skip-button {
-    margin-top: -1%;
-    margin-right: 3%;
     color: #af5147;
-    float: right;
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: bold;
   }
+
   .skip-button:hover,
   .skip-button:focus {
     color: #000;
@@ -80,17 +87,28 @@
   }
 
   .next-button {
-      font-size:2.5rem;
-      float: right;
-      margin: 2% 3%;
+    font-size:2.2rem;
+    margin: 0 3%;
     background-color: #111c3cbb;
     color: white;
     cursor: pointer;
-    padding: 0 2%;
+    padding: 0 8%;
     border-radius: 10px;
   }
 
+  .previous-button {
+    font-size:2.2rem;
+    margin: 0;
+    background-color: #111c3cbb;
+    color: white;
+    cursor: pointer;
+    padding: 0 7%;
+    border-radius: 10px;
+  }
 
+  #genome_intro_slides {
+      display: none;
+  }
   
 
  p{

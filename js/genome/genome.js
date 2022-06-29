@@ -1,6 +1,6 @@
 
 
-$("#reset").click(function(){
+$("#recenter").click(function(){
     // reload whole page to reset visualizations (not efficient)
     window.location.reload();
 });

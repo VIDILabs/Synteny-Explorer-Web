@@ -4,6 +4,7 @@ var outerRadius = null, innerRadius = null
 var w = 1770, h = 1361;
 var zoomValue, zoom;
 var selected = 0;
+var page = 0;
 var wiki= {}, sName = {};
 var display = "linear";
 var miniCanvas, rootDists, timeLineScale, xAxis, frameTranslate, dragTransform = null, scale2 = 1;
@@ -69,19 +70,6 @@ d3.queue()
         display = "linear";
         addMiniMap(life, info)
     });
-
-    $("#show_intro").click(function() {
-        //console.log("here")
-        //$("#mask").css("-webkit-mask-image", "linear-gradient(white, transparent)");
-        $("#intro_slides").css("display", "block");
-        /*d3.selectAll("#intro_slides")
-            .append("g")
-            .id("slide_1")*/
-    });
-
-    $(".skip-button").click(function() {
-        $("#intro_slides").css("display", "none");
-    })
 
     var chart = $(".canvas"),
     rect = document.getElementById("canvas").getBoundingClientRect(),
