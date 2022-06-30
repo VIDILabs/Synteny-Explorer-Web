@@ -86,7 +86,7 @@ function assignPageText(pageNum) {
         body_text = "Synteny blocks sometimes invert. This type of rearrangement is a disrupting event, "
                     + "and is an important mechanism for scientists in studying genome evolution. "
                     + "<br><br>To denote a flip, a synteny block will do a half spin."
-                    + "<br><br>Use \"Mode\" in the navigation bar to select different representation of the genome evolution.";
+                    + "<br><br>Use \"Mode\" in the navigation bar to select different representations of the genome evolution.";
         addBodyText(body_text, "../data/intro/flip_animating.png", 6, 6);
         addButtons(1,1);
 
