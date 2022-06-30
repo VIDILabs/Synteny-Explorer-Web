@@ -4,7 +4,7 @@ $("#recenter").click(function(){
     // recenter the zoomed svg
     svg
     .call(zoom_function.transform, d3.zoomIdentity)
-    .attr("transform", "translate(" + margin.left + "," + (-130) + ")");;
+    .attr("transform", "translate(" + margin.left + "," + (0) + ")");;
 });
 
 $("#back-to-phylo").click(function(){
@@ -87,7 +87,7 @@ var svg = d3.select("#chromosomes")
                 .append("g")
                 .attr("id", 'tree')
                 .attr("class", "panSelect")
-                .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
+                .attr("transform", "translate(" + margin.left + "," + (0) + ")");
 
 
 //make svg responsive
@@ -463,7 +463,7 @@ queue.awaitAll(function(error, csvDataSets) {
         if (mode == "forward" || mode == "backward") {
             $("#morphthenslide").css("color", "#d23600");
             d3.select("#tree")
-                .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
+                .attr("transform", "translate(" + margin.left + "," + (0) + ")");
             d3.selectAll(".circos").remove();
             d3.selectAll(".chrChart path").remove();
             for (b = data.length - 1; b >= 0; b--) {
@@ -482,7 +482,7 @@ queue.awaitAll(function(error, csvDataSets) {
             forward_pointer_event();
             $("#morphthenslide").css("color", "#555555");
             d3.select("#tree")
-                .attr("transform", "translate(" + margin.left + "," + (-130) + ")");
+                .attr("transform", "translate(" + margin.left + "," + (0) + ")");
             selectedLink = [];
             for (b = data.length - 1; b >= 0; b--) {
                 d3.select("#" + childrens[b] + " text").style("opacity", 1);

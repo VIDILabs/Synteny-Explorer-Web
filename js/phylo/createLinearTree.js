@@ -1,7 +1,8 @@
 var disable_Parents;
 function creatLinearTree(life, info, baseSvg) {
-    var showTime = 0;
+    var showTime = 1;
     var showName = 1;
+    $("#show_timeLine").css("color", "#d23600");
     $("#show_name").css("color", "#d23600");
     $("#linear").css("color", "#d23600");
     $("#radial").css("color", "#555555");
@@ -28,6 +29,10 @@ function creatLinearTree(life, info, baseSvg) {
         .scale(zoomValue / 100));
     });
     
+    if (showTime == 1) {
+        showTimeLine();
+    }
+
     $("#show_timeLine").click(function(){
         if(showTime == 0){
             $("#show_timeLine").css("color", "#d23600");
@@ -601,7 +606,7 @@ function creatLinearTree(life, info, baseSvg) {
         
         timeLineScale = d3.scaleLinear()
         .domain([rootDists, 0])
-        .rangeRound([0, w * scale2+50]);
+        .rangeRound([0, w * scale2]);
 
         xAxis = d3.axisBottom(timeLineScale);
 

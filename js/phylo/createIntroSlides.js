@@ -57,8 +57,11 @@ function assignPageText(pageNum) {
     } else if (pageNum == 2) {
         title_text = "The Phylogenetic Tree Classifies Species";
         addTitleText(title_text);
-        body_text = "<br><br><br><br><br><br>Click on the animal icons in the tree to "
-                    + " learn more about them. When two species are in the sidebar, "
+        body_text = "<br><br><br><br>Use the mini tree in the left sidebar to get an overview. "
+                    + "Drag the white frame to take a closer look at different part of the tree. "
+                    + "Zoom in and out by scrolling the mouse. "
+                    + "<br><br>Click on the animal icons in the tree to "
+                    + " learn more about them. When two species are in the right sidebar, "
                     + "the path to their most recent common ancestor is highlighted. "
                     + "Then click on \"go to genome view\" to explore their chromosome evolution.";
         addBodyText(body_text, "../data/intro/phylo.png", 7, 5);

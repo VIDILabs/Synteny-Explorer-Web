@@ -25,7 +25,60 @@ d3.demo.canvas = function(life, info) {
         var yScale = d3.scaleLinear()
         .domain([-height / 2, height / 2])
         .range([height, 0]);
+        var svg = selection.append("svg")
+            .attr("class", "svg canvas")
+            .attr("id","canvas")
+            .attr("preserveAspectRatio", "xMinYMid meet")
+            .attr("height", height)
+            .attr("height", width + 700)
+            .attr("viewBox", "0 0 " + (width + 700) + " " + height);
 
+        creatDefs(svg, info, 80, "big");
+        creatDefs(svg, info, 60, "mini");
+        creatDefs(svg, info, 50, "xmini");
+
+
+        var svgDefs = svg.append("defs");
+
+        var filter = svgDefs.append("svg:filter")
+                    .attr("id", "minimapDropShadow_gmult")
+                    .attr("x", "-20%")
+                    .attr("y", "-20%")
+                    .attr("width", "150%")
+                    .attr("height", "150%");
+
+        filter.append("svg:feOffset")
+                .attr("result", "offOut")
+                .attr("in", "SourceGraphic")
+                .attr("dx", "1")
+                .attr("dy", "1");
+
+        var innerWrapper = svg.append("g")
+                            .attr("class", "wrapper inner")
+                            .attr("transform", "translate(" + (wrapperBorder) + "," + (wrapperBorder) + ")")
+        
+        innerWrapper.append("g")
+                .attr("class", "timeLine");
+
+        innerWrapper.append("rect")
+                .attr("class", "background")
+                .attr("width", width)
+                .attr("height", height)
+                .style("cursor","default");
+
+        var panCanvas = innerWrapper.append("g")
+                .attr("class", "panCanvas")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("transform", "translate(0,0)");
+
+
+        panCanvas.append("rect")
+                .attr("class", "background")
+                .attr("width", width)
+                .attr("height", height)
+        
+        
         var zoomHandler = function(newScale) {
             if (d3.event) {
                 scale = d3.event.transform.k;
@@ -46,12 +99,18 @@ d3.demo.canvas = function(life, info) {
                 ];
                 console.log("translation")
                 console.log(translation)
+
+                
                 
             }
+            //.attr("transform", d3.event.transform);
 
-            d3.select(".panCanvas, .panCanvas .bg")
+            /*if (d3.event.sourceEvent instanceof MouseEvent || d3.event.sourceEvent instanceof WheelEvent) {
+                minimap.update(d3.event.transform);
+            }*/
+
+            panCanvas
             .attr("transform", "translate(" + translation + ")" + " scale(" + scale + ")");
-            
 
             minimap.scale(scale).render();
         }; // startoff zoomed in a bit to show pan/zoom rectangle
@@ -60,62 +119,9 @@ d3.demo.canvas = function(life, info) {
         .scaleExtent([0.7, 1.7])
         .on("zoom.canvas", zoomHandler);
 
-        var svg = selection.append("svg")
-        .attr("class", "svg canvas")
-        .attr("id","canvas")
-        .attr("preserveAspectRatio", "xMinYMid meet")
-        .attr("height", height)
-        .attr("height", width + 700)
-        .attr("viewBox", "0 0 " + (width + 700) + " " + height);
-
-        creatDefs(svg, info, 80, "big");
-        creatDefs(svg, info, 60, "mini");
-        creatDefs(svg, info, 50, "xmini");
-
-
-        var svgDefs = svg.append("defs");
-
-        var filter = svgDefs.append("svg:filter")
-        .attr("id", "minimapDropShadow_gmult")
-        .attr("x", "-20%")
-        .attr("y", "-20%")
-        .attr("width", "150%")
-        .attr("height", "150%");
-
-        filter.append("svg:feOffset")
-        .attr("result", "offOut")
-        .attr("in", "SourceGraphic")
-        .attr("dx", "1")
-        .attr("dy", "1");
-
-        var innerWrapper = svg.append("g")
-        .attr("class", "wrapper inner")
-        .attr("transform", "translate(" + (wrapperBorder) + "," + (wrapperBorder) + ")").call(zoom).on("dblclick.zoom", null);
-
-        innerWrapper.append("g")
-        .attr("class", "timeLine");
-
-        innerWrapper.append("rect")
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height)
-        .style("cursor","default");
-
-        var panCanvas = innerWrapper.append("g")
-        .attr("class", "panCanvas")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", "translate(0,0)");
-
-
-        panCanvas.append("rect")
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height)
-        
-        //panCanvas.call(zoom);
-
-        console.log("update")
+        innerWrapper
+        .call(zoom)
+        .on("dblclick.zoom", null);
 
         miniBaseSvg = d3.select("#contextTree").append("svg")
         .attr("id", "miniBaseSvg");
@@ -124,7 +130,6 @@ d3.demo.canvas = function(life, info) {
         .zoom(zoom)
         .target(panCanvas)
         .minimapScale(minimapScale);
-
 
         miniBaseSvg.call(minimap);
 
@@ -268,10 +273,14 @@ d3.demo.minimap = function(life, info, baseSvg) {
                 timeLineScale.rangeRound([0, w * scale2]);
                 xAxis = d3.axisBottom(timeLineScale);
 
+                let tickLabels = ['300 million years ago', '250 million years ago', '200 million years ago', '150 million years ago','100 million years ago', '50 million years ago','Present'];
+
                 if(display == "linear"){
                     d3.select(".timeLine")
-                    .attr("transform", "translate(" + frameTranslate[0] + "," + 0 + ")")
-                    .call(xAxis.ticks(5));
+                    .attr("transform", "translate(" + (frameTranslate[0]+35) + "," + 0 + ")")
+                    .call(xAxis.ticks(8).tickFormat((d,i) => tickLabels[i]))
+                    .selectAll("text")
+                    .style("font-size", "15px");;
                 }
             }
         }
@@ -297,7 +306,7 @@ d3.demo.minimap = function(life, info, baseSvg) {
             
             if(timeLineScale !== undefined){
                 d3.select(".timeLine")
-                .attr("transform", "translate(" + translate[0] + "," + 0 + ")");
+                .attr("transform", "translate(" + (translate[0]+35) + "," + 0 + ")");
             }
         }
 
@@ -373,6 +382,17 @@ d3.demo.minimap = function(life, info, baseSvg) {
         height = parseInt(target.attr("height"), 10);
         return this;
     };
+    
+    
+    /*minimap.update = function(hostTransform) {
+        // invert the incoming zoomTransform; ordering matters here! you have to scale() before you translate()
+        var modifiedTransform = d3.zoomIdentity.scale((1/hostTransform.k)).translate(-hostTransform.x, -hostTransform.y);
+        // call this.zoom.transform which will reuse the handleZoom method below
+        zoom.transform(frame, modifiedTransform);
+        // update the new transform onto the minimapCanvas which is where the zoomBehavior stores it since it was the call target during initialization
+        //container.property("__zoom", modifiedTransform);
+        return this;
+    };*/
 
     return minimap;
 };
