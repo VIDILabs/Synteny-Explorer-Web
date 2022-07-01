@@ -2,6 +2,16 @@ var page = 0;
 var title_text;
 var body_text;
 var body_image;
+var original_width = 2560
+var original_height = 1257
+var width = $(window).width();
+var height = $(window).height();
+var text_ratio = Math.min(width/original_width, height/original_height)
+var title_font_size = text_ratio * 3;
+var body_font_size = text_ratio * 1.5;
+
+
+
 $("#show_intro").click(function() {
     page = 0;
     $(".modal").css("display", "flex");
@@ -123,19 +133,60 @@ function assignPageText(pageNum) {
     }
 
     function addTitleText(text) {
+
+        $(window).resize(function() {
+            width = $(window).width();
+            height = $(window).height();
+            text_ratio = Math.min(width/original_width, height/original_height)
+            //console.log("new text ratio: ", text_ratio)
+            title_font_size = text_ratio * 3;
+            body_font_size = text_ratio * 1.5;
+
+            var textSize = title_font_size+"rem"
+            console.log(textSize)
+            $('.title-text-box').css("font-size", title_font_size + "rem");
+            $('.title-text-box').html("<div class=\"title-text\">" + text +"</div>");
+            $('.skip-button-box').html("<div class=\"skip-button\">&times;</div>");
+          })
+        
+        
+        var textSize = title_font_size+"rem"
+        console.log(textSize)
+        $('.title-text-box').css("font-size", title_font_size + "rem");
         $('.title-text-box').html("<div class=\"title-text\">" + text +"</div>");
         $('.skip-button-box').html("<div class=\"skip-button\">&times;</div>");
     }
 
     function addBodyText(text, image_url, col1, col2) {
+        $(window).resize(function() {
+            width = $(window).width();
+            height = $(window).height();
+            text_ratio = Math.min(width/original_width, height/original_height);
+            //console.log("new text ratio: ", text_ratio)
+            title_font_size = text_ratio * 3;
+            body_font_size = text_ratio * 1.5;
+
+            if (image_url == 0) {
+                $('#modal-content-body').html(
+                    "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size:"+body_font_size+"rem; padding-right:5%;\">"
+                    + text +"</div>"
+                    + "<div class=\"col-" + col2 + "\"></div>");
+            } else {        
+                $('#modal-content-body').html(
+                    "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size:" + body_font_size +"rem; padding-right:5%;\">"
+                    + text +"</div>"
+                    + "<img class=\"col-" + col2 + "\" src=\"" + image_url + "\" alt=\"\" style=\"object-fit:contain;\">");
+            }
+        })
+
         if (image_url == 0) {
             $('#modal-content-body').html(
-                "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size: 1.5rem; padding-right:5%;\">"
+                "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size:"+body_font_size+"rem; padding-right:5%;\">"
                 + text +"</div>"
                 + "<div class=\"col-" + col2 + "\"></div>");
         } else {        
             $('#modal-content-body').html(
-                "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size: 1.5rem; padding-right:5%;\">"
+                "<div class=\"col-" + col1 + "\" id=\"body-text\" style=\"font-size:" + body_font_size +"rem; padding-right:5%;\">"
                 + text +"</div>"
                 + "<img class=\"col-" + col2 + "\" src=\"" + image_url + "\" alt=\"\" style=\"object-fit:contain;\">");
         }

@@ -1,4 +1,28 @@
 var disable_Parents;
+
+var original_width = 2560
+var original_height = 1257
+var width = $(window).width();
+var height = $(window).height();
+var text_ratio = Math.min(width/original_width, height/original_height)
+var side_bar_font_size = text_ratio * 0.9;
+
+$("#selectSpe1").css("font-size", side_bar_font_size+"rem")
+$("#selectSpe2").css("font-size", side_bar_font_size+"rem")
+
+
+$(window).resize(function() {
+    width = $(window).width();
+    height = $(window).height();
+    text_ratio = Math.min(width/original_width, height/original_height)
+    side_bar_font_size = text_ratio * 0.9;
+    $("#selectSpe1").css("font-size", side_bar_font_size+"rem")
+    $("#selectSpe2").css("font-size", side_bar_font_size+"rem")
+
+
+})
+
+
 function creatLinearTree(life, info, baseSvg) {
     var showTime = 1;
     var showName = 1;
@@ -156,6 +180,8 @@ function creatLinearTree(life, info, baseSvg) {
                     })
                     .on("click", function(d) {
                         console.log(selected);
+                        var side_bar_font_size = 0.9;
+                        
                         if (selected == 0) {   // both empty: 00
                             secondNode = "";
                             secondNodeName = "";
@@ -180,18 +206,18 @@ function creatLinearTree(life, info, baseSvg) {
                             firstNode = d;
                             selected = 1;
                             firstNodeName = "" + d.data.name;
-                            $("#speOne").html("<div class=\"boxTitle\" style=\"transform:translate(0px,-7px);\"><a class=\"closeButton\" id=\"reselectSpeOne\"></a><img src=png/" + d.data.name + 
-                                        "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" + 
+                            $("#speOne").html("<div class=\"boxTitle\" style=\"transform:translate(0px,-7px); font-size:" + side_bar_font_size + "rem;\"><a class=\"closeButton\" id=\"reselectSpeOne\"></a><img src=png/" + d.data.name + 
+                                        "_sm.png style=\"width:60px;height:60px;\"><p class=\"textTitle\">" + 
                                         sName[d.data.name] + "</p><p class=\"textArea\">" +
                                         wiki[d.data.name] + "</p><div>");
-                            $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                            $("#speTwo").html("<div class=\"innerbox\" style=\"font-size:" + side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                             d3.selectAll('#miniTree svg').remove();
 
                             // become 10 after selection, close button: go to 00
                             d3.select("#speOne")
                                 .select(".closeButton")
                                 .on("click", function(){
-                                    $("#speOne").html("<div class=\"innerbox\"><p>Click on two different animals from the phylogenetic tree"
+                                    $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click on two different animals from the phylogenetic tree"
                                                         + " to select, and then go to the chromosome view to see the genome evolution and "
                                                         + "divergence of the two species, based on common ancestors!</p></div>");
                                     $(".button").hide()
@@ -229,7 +255,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 selected = 0;
                                 firstNode = "";
                                 firstNodeName = "";*/
-                                $("#speOne").html("<div class=\"innerbox\"><p>Click on two different animals from the phylogenetic tree"
+                                $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click on two different animals from the phylogenetic tree"
                                                 + " to select, and then go to the chromosome view to see the genome evolution and "
                                                 + "divergence of the two species, based on common ancestors!</p></div>");
                                 $(".button").hide()
@@ -246,7 +272,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 selected = 3;  // go to state 11
                                 secondNodeName = "" + d.data.name;
                                 $("#speTwo").html("<div class=\"boxTitle\"><a href=\"#\" class=\"closeButton\" id=\"reselectSpeTwo\" style=\"transform:translate(-18px,3px);\"></a><img src=png/" + 
-                                    d.data.name + "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" +
+                                    d.data.name + "_sm.png style=\"width:60px;height:60px;font-size:"+ side_bar_font_size + "rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" +
                                     sName[d.data.name] + "</p><p class=\"textArea\">" + 
                                     wiki[d.data.name] + "</p><div>");
                                 var miniLife = buildMiniTree(firstNode, secondNode);
@@ -258,7 +284,7 @@ function creatLinearTree(life, info, baseSvg) {
                             d3.select("#speOne")
                                 .select(".closeButton")
                                 .on("click", function(){
-                                    $("#speOne").html("<div class=\"innerbox\"><p>Click on two different animals from the phylogenetic tree"
+                                    $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click on two different animals from the phylogenetic tree"
                                                 + " to select, and then go to the chromosome view to see the genome evolution and "
                                                 + "divergence of the two species, based on common ancestors!</p></div>");
                                     $(".button").hide()
@@ -279,7 +305,7 @@ function creatLinearTree(life, info, baseSvg) {
                             d3.select("#speTwo")
                                 .select(".closeButton")
                                 .on("click", function(){
-                                    $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                    $("#speTwo").html("<div class=\"innerbox\" style\"font-size:" + side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                     $(".button").hide()
                                     d3.selectAll('#miniTree svg').remove();
                                     d3.selectAll(".boarder").attr("opacity",0);
@@ -327,7 +353,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 selected = 0;
                                 firstNode = "";
                                 firstNodeName = "";*/
-                                $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                $("#speTwo").html("<div class=\"innerbox\" style=\"font-size:" + side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                 $(".button").hide()
                                 d3.selectAll('#miniTree svg').remove();
                                 d3.selectAll(".boarder").attr("opacity",0);
@@ -342,7 +368,7 @@ function creatLinearTree(life, info, baseSvg) {
                                 selected = 3;   // go to state 11
                                 firstNodeName = "" + d.data.name;
                                 $("#speOne").html("<div class=\"boxTitle\"><a href=\"#\" class=\"closeButton\" id=\"reselectSpeTwo\" style=\"transform:translate(-18px,3px);\"></a><img src=png/" + 
-                                    d.data.name + "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" +
+                                    d.data.name + "_sm.png style=\"width:60px;height:60px;\"><p class=\"textTitle\" style=\"font-size:"+ side_bar_font_size + "rem;\">" +
                                     sName[d.data.name] + "</p><p class=\"textArea\">" + 
                                     wiki[d.data.name] + "</p><div>");
                                 var miniLife = buildMiniTree(firstNode, secondNode);
@@ -353,7 +379,7 @@ function creatLinearTree(life, info, baseSvg) {
                             d3.select("#speOne")
                                 .select(".closeButton")
                                 .on("click", function(){
-                                    $("#speOne").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                    $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                     $(".button").hide()
                                     d3.selectAll('#miniTree svg').remove();
                                     d3.selectAll(".boarder").attr("opacity",0);
@@ -371,7 +397,7 @@ function creatLinearTree(life, info, baseSvg) {
                             d3.select("#speTwo")
                                 .select(".closeButton")
                                 .on("click", function(){
-                                    $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                    $("#speTwo").html("<div class=\"innerbox\" style=\"font-size:" + side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                     $(".button").hide()
                                     d3.selectAll('#miniTree svg').remove();
                                     d3.selectAll(".boarder").attr("opacity",0);
@@ -416,17 +442,17 @@ function creatLinearTree(life, info, baseSvg) {
                                 selected = 1;
                                 firstNodeName = "" + d.data.name;
                                 $("#speOne").html("<div class=\"boxTitle\" style=\"transform:translate(0px,-7px);\"><a class=\"closeButton\" id=\"reselectSpeOne\"></a><img src=png/" + d.data.name + 
-                                            "_sm.png style=\"width:60px;height:60px;font-size:0.9rem;\"><p class=\"textTitle\" style=\"font-size:0.9rem\">" + 
+                                            "_sm.png style=\"width:60px;height:60px;font-size:"+ side_bar_font_size + "rem;\"><p class=\"textTitle\" style=\"\">" + 
                                             sName[d.data.name] + "</p><p class=\"textArea\">" +
                                             wiki[d.data.name] + "</p><div>");
-                                $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                $("#speTwo").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                 d3.selectAll('#miniTree svg').remove();
 
                                 // become 10 after selection, close button: go to 00
                                 d3.select("#speOne")
                                     .select(".closeButton")
                                     .on("click", function(){
-                                        $("#speOne").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                        $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                         $(".button").hide()
                                         d3.selectAll('#miniTree svg').remove();
                                         d3.selectAll(".boarder").attr("opacity",0);
@@ -443,7 +469,7 @@ function creatLinearTree(life, info, baseSvg) {
                                         }
                                     })
                             } else if (thirdNodeName == firstNodeName) {   // when deselect the first node
-                                $("#speOne").html("<div class=\"innerbox\"><p>Click on two different animals from the phylogenetic tree"
+                                $("#speOne").html("<div class=\"innerbox\" style=\"font-size:"+ side_bar_font_size + "rem;\"><p>Click on two different animals from the phylogenetic tree"
                                                 + " to select, and then go to the chromosome view to see the genome evolution and "
                                                 + "divergence of the two species, based on common ancestors!</p></div>");
                                 $(".button").hide()
@@ -465,7 +491,7 @@ function creatLinearTree(life, info, baseSvg) {
                                     }
                                 }
                             } else if (thirdNodeName == secondNodeName) {   // when deselect the second node
-                                $("#speTwo").html("<div class=\"innerbox\"><p>Click Icons to Select Species.</p></div>");
+                                $("#speTwo").html("<div class=\"innerbox\" style=\"font-size:" + side_bar_font_size + "rem;\"><p>Click Icons to Select Species.</p></div>");
                                 $(".button").hide()
                                 d3.selectAll('#miniTree svg').remove();
                                 d3.selectAll(".boarder").attr("opacity",0);
@@ -493,7 +519,9 @@ function creatLinearTree(life, info, baseSvg) {
                                         .attr("opacity",0.5);
                                 }
                             }
+                        
                         }
+                    
                     })
                     .attr("pointer-events", function(d) {
                         if (sName[d.data.name] != "") {

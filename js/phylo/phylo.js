@@ -10,6 +10,8 @@ var display = "linear";
 var miniCanvas, rootDists, timeLineScale, xAxis, frameTranslate, dragTransform = null, scale2 = 1;
 var overview = "open";
 
+
+
 $(".button").hide();
 $(".button").click(function(){
     // window will load in the same tag
