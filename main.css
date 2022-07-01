@@ -169,7 +169,7 @@
   }
 
   .next-button {
-    font-size:1.5rem;
+    font-size:1.3rem;
     margin: 0 3%;
     background-color: #111c3cbb;
     color: white;
@@ -179,12 +179,12 @@
   }
 
   .previous-button {
-    font-size:1.5rem;
+    font-size:1.3rem;
     margin: 0;
     background-color: #111c3cbb;
     color: white;
     cursor: pointer;
-    padding: 0 7%;
+    padding: 0 8%;
     border-radius: 10px;
   }
 }
@@ -240,7 +240,7 @@
   }
 
   .next-button {
-    font-size:2.2rem;
+    font-size:1.8rem;
     margin: 0 3%;
     background-color: #111c3cbb;
     color: white;
@@ -250,7 +250,7 @@
   }
 
   .previous-button {
-    font-size:2.2rem;
+    font-size:1.8rem;
     margin: 0;
     background-color: #111c3cbb;
     color: white;
