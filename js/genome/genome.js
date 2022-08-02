@@ -7,7 +7,7 @@ $("#recenter").click(function(){
     .attr("transform", "translate(" + margin.left + "," + (0) + ")");;
 });
 
-$("#back-to-phylo").click(function(){
+$("#phylo").click(function(){
     // window will load in the same tag
     window.location.replace("phylo.html");
 });

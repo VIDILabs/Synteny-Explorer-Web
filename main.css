@@ -410,6 +410,7 @@
      border-style: solid;
      border-width: 3px;
      border-color: rgba(115, 115, 115,.5);
+     text-align: center;
  }
  .boxOne {
      position: fixed;

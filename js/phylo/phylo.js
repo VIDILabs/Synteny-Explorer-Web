@@ -18,9 +18,8 @@ $(".button").click(function(){
     window.location.replace("genome.html?" + str, 'genome view');
 });
 
-$(".closeButton").on("click",function(){
-    //console.log("here2");
-})
+
+
 
 
 
